@@ -1,0 +1,9 @@
+.header {
+  text-align: center;
+  width: 100%;
+  background-color: black;
+  padding: 25px;
+  color: gold;
+  box-shadow: 0 0 5px 10px rgba(0, 0, 0, 0.3);
+  font-size: 25px;
+}
