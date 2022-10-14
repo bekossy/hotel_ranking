@@ -1,0 +1,61 @@
+aside {
+  background-color: rgb(116, 116, 116);
+  border-radius: 10px;
+  margin-top: 50px;
+  height: 100%;
+}
+
+form {
+  padding: 20px;
+  margin: 10px auto;
+}
+
+label {
+  font-size: 30px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+input[type="text"] {
+  width: 100%;
+  margin: 10px auto 20px;
+  padding: 0.7rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.3rem;
+  outline: none;
+  border: 1px solid gray;
+}
+
+form .btn {
+  border-radius: 1.5rem;
+  width: 100%;
+  padding: 0.7rem 0.75rem;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  background-color: gold;
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+  border: 1px solid gold;
+  transition: all 0.4s linear;
+  cursor: pointer;
+}
+
+form .btn:hover {
+  background: #f1f5f8;
+  color: gold;
+}
+
+@media screen and (max-width: 750px) {
+  aside {
+    margin: 30px auto 50px;
+    max-width: 500px;
+  }
+}
+
+@media screen and (min-width: 751px) {
+  aside {
+    width: 100%;
+    max-width: 300px;
+  }
+}
