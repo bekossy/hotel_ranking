@@ -1,4 +1,5 @@
 export interface Chain{
+    id: number;
     chain: string;
 }
 
