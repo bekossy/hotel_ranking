@@ -1,0 +1,54 @@
+.layout {
+  width: 100%;
+  margin-left: 30px;
+}
+
+.layout p {
+  margin: 150px auto 0;
+  padding: 30px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.layoutTop {
+  background-color: black;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px;
+}
+.layoutTop h2 {
+  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: gold;
+}
+
+.hotels {
+  margin: 0 auto;
+  text-align: center;
+  padding: 50px;
+  font-size: 20px;
+  color: gray;
+  background-color: white;
+}
+
+.chainLayout {
+  margin: 10px auto 30px;
+}
+
+@media screen and (max-width: 750px) {
+  .layout {
+    margin-left: 0;
+  }
+  .layout p {
+    margin-top: 100px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .layoutTop {
+    padding: 25px 15px;
+  }
+}
