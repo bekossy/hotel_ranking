@@ -1,6 +1,7 @@
 export interface Chain{
     id: number;
     chain: string;
+    hotel: Hotel[];
 }
 
 export interface Hotel{
