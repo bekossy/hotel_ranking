@@ -1,0 +1,33 @@
+.hotel {
+  margin: 20px;
+  padding: 5px 20px;
+  background-color: #f1f5f8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease-in-out;
+}
+
+.hotel:hover {
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.17);
+}
+.props h1 {
+  font-size: 35px;
+  color: #000;
+  text-transform: uppercase;
+}
+.props {
+  color: gray;
+  text-transform: capitalize;
+}
+
+.p-btns {
+  display: flex;
+  place-items: center;
+}
+.p-btn {
+  cursor: pointer;
+  margin-right: 5px;
+  outline: none;
+}
+
