@@ -3,7 +3,7 @@
   margin-left: 30px;
 }
 
-.layout p {
+.noChains {
   margin: 150px auto 0;
   padding: 30px;
   text-align: center;
@@ -28,11 +28,19 @@
 
 .hotels {
   margin: 0 auto;
-  text-align: center;
-  padding: 50px;
-  font-size: 20px;
   color: gray;
   background-color: white;
+  height: 350px;
+  overflow-y: auto;
+}
+
+.hotels span {
+  font-size: 20px;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  padding-top: 100px;
+  display: block;
 }
 
 .chainLayout {
@@ -43,8 +51,18 @@
   .layout {
     margin-left: 0;
   }
-  .layout p {
+  .noChains {
     margin-top: 100px;
+  }
+  .props h1 {
+    font-size: 30px;
+  }
+  .props p {
+    font-size: 13px;
+    margin: 3px 0;
+  }
+  .hotels {
+    height: 300px;
   }
 }
 @media screen and (max-width: 600px) {
