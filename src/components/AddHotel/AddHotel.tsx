@@ -20,14 +20,18 @@ interface Props {
     modal: boolean;
     modalColor: boolean;
     modalText: string;
+    setNewHotelChain: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const AddHotel: React.FC<Props> = (props) => {
-    const { editFlag, name, city, country, address, rank, setName, setAddress, setCity, setCountry, setRank, handleSubmit, modal, modalColor, modalText } = props;
+    const { editFlag, name, city, country, address, rank, setName, setAddress, setCity, setCountry, setRank, handleSubmit, modal, modalColor, modalText, setNewHotelChain } = props;
     const navigate = useNavigate();
     return (
         <>
-            <button type='button' className="backBtn" onClick={() => navigate("/")}>
+            <button type='button' className="backBtn" onClick={() => {
+                setNewHotelChain("")
+                navigate("/")
+            }}>
                 <Icon path={mdiArrowRightCircle} title="User Profile"
                     size={1}
                     horizontal
@@ -50,7 +54,7 @@ const AddHotel: React.FC<Props> = (props) => {
                 <label htmlFor="address">Address</label>
                 <input type="text" name='address' placeholder='enter address' id='address' value={address} onChange={(e) => setAddress(e.target.value)} />
 
-                <label htmlFor="rank">Enter Hotel Rate(/5): </label>
+                <label htmlFor="rank">Enter Hotel Rank(/5): </label>
                 <input type="number" name="rank" id="rank" min={0} max={5} value={rank} onChange={(e) => setRank(e.target.valueAsNumber)} />
 
                 <button type="submit" className='btn'>{editFlag ? "Edit" : "Save"}</button>
