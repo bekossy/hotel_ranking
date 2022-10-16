@@ -31,3 +31,14 @@
   outline: none;
 }
 
+@media screen and (max-width: 750px) {
+  .hotel {
+    margin: 10px 20px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .hotel {
+    display: block;
+  }
+}
