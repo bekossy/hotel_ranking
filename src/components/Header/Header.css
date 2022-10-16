@@ -6,4 +6,11 @@
   color: gold;
   box-shadow: 0 0 5px 10px rgba(0, 0, 0, 0.3);
   font-size: 25px;
+  font-family: sans-serif;
+}
+
+@media screen and (max-width: 400px) {
+  .header {
+    font-size: 21px;
+  }
 }
