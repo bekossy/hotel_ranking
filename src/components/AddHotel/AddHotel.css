@@ -8,6 +8,7 @@ form h1 {
   font-size: 32px;
   font-weight: 900;
   text-align: center;
+  margin-bottom: 10px;
 }
 
 form label {
@@ -88,6 +89,10 @@ form .btn:hover {
 
 @media screen and (max-width: 750px) {
   form {
-    padding: 10px 20px;
+    padding: 10px 30px;
+  }
+  input[type="text"] {
+    width: 100%;
+    margin: 10px auto;
   }
 }
