@@ -6,13 +6,16 @@ import { useNavigate } from 'react-router-dom';
 import './Hotel.css';
 
 interface Props {
+    i: number;
+    index: number;
     item: Hotel;
-    handleDelete: (id: number) => void;
-    handleEdit: (id: number, name: string, city: string, address: string, country: string, rank: number) => void;
+    handleDelete: (id: number, chainID: number) => void;
+    handleEdit: (id: number, name: string, city: string, address: string, country: string, rank: number, hotelID: number, chainID: number) => void;
+    startHandleEdit: (chain: number, hotel: number) => void;
 }
 
 const Hotels: React.FC<Props> = (props) => {
-    const { item, handleDelete, handleEdit } = props;
+    const { item, handleDelete, handleEdit, i, index, startHandleEdit } = props;
     const navigate = useNavigate();
 
     return (
@@ -24,13 +27,13 @@ const Hotels: React.FC<Props> = (props) => {
                 <p><b>Rank: </b>{item.rank} / 5</p>
             </div>
             <div className="p-btns">
-                <button type='button' className='p-btn' onClick={() => { handleEdit(item.id, item.name, item.city, item.address, item.country, item.rank); navigate("/addHotel"); }}>
+                <button type='button' className='p-btn' onClick={() => { handleEdit(item.id, item.name, item.city, item.address, item.country, item.rank, i, index); navigate("/addHotel"); }}>
                     <Icon
                         path={mdiPencil}
                         size={1}
                         color="green"
                     /></button>
-                <button type='button' className='p-btn' onClick={() => handleDelete(item.id)}>
+                <button type='button' className='p-btn' onClick={() => handleDelete(i, index)}>
                     <Icon
                         path={mdiDelete}
                         size={1}
