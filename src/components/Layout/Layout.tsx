@@ -8,18 +8,19 @@ interface Props {
     list: Chain[];
     deleteChain: (id: number) => void;
     editChain: (id: number, text: string) => void;
-    handleDelete: (id: number) => void;
-    handleEdit: (id: number, name: string, city: string, address: string, country: string, rank: number) => void;
-    setNewHotelChain: React.Dispatch<React.SetStateAction<string>>
+    handleDelete: (id: number, chainID: number) => void;
+    handleEdit: (id: number, name: string, city: string, address: string, country: string, rank: number, hotelID: number, chainID: number) => void;
+    setNewHotelChain: React.Dispatch<React.SetStateAction<string>>;
+    startHandleEdit: (chain: number, hotel: number) => void;
 }
 
 const Layout: React.FC<Props> = (props) => {
-    const { list, deleteChain, editChain, handleDelete, handleEdit, setNewHotelChain } = props;
+    const { list, deleteChain, editChain, handleDelete, handleEdit, setNewHotelChain, startHandleEdit } = props;
     const navigate = useNavigate();
     return (
         <><section className='layout'>
             {list.length
-                ? <div>{list.map((layout) => {
+                ? <div>{list.map((layout, i) => {
 
                     return <>
                         <div className="chainLayout" key={layout.id}>
@@ -37,8 +38,8 @@ const Layout: React.FC<Props> = (props) => {
 
                             </div>
                             <div className="hotels">
-                                {layout.hotel.length ? layout.hotel.map((item) => {
-                                    return <Hotels key={item.id} item={item} handleDelete={handleDelete} handleEdit={handleEdit} />
+                                {layout.hotel.length ? layout.hotel.map((item, index) => {
+                                    return <Hotels key={item.id} item={item} handleDelete={handleDelete} handleEdit={handleEdit} i={i} index={index} startHandleEdit={startHandleEdit} />
                                 }) : <span>Add a hotel to chain</span>}
                             </div>
                         </div>
