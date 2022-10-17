@@ -37,22 +37,22 @@ const AddHotel: React.FC<Props> = (props) => {
                     horizontal
                     vertical
                     color="black"
-                /> Back To Home
+                /> Back
             </button>
             <form className='form' onSubmit={handleSubmit}>
                 {modal ? <div className={`modal ${modalColor ? "green" : "red"}`}>{modalText}</div> : ""}
                 <h1>{editFlag ? "Edit" : "Add"} a Hotel</h1>
                 <label htmlFor="name">Name</label>
-                <input type="text" placeholder='name of hotel' name='name' id='name' value={name} onChange={(e) => setName(e.target.value)} />
+                <input type="text" placeholder='Name of hotel' name='name' id='name' value={name} onChange={(e) => setName(e.target.value)} />
 
                 <label htmlFor="city">City</label>
-                <input type="text" name='city' placeholder='enter city' id='city' value={city} onChange={(e) => setCity(e.target.value)} />
+                <input type="text" name='city' placeholder='Enter city' id='city' value={city} onChange={(e) => setCity(e.target.value)} />
 
                 <label htmlFor="country">Country</label>
-                <input type="text" name='country' placeholder='enter country' id='country' value={country} onChange={(e) => setCountry(e.target.value)} />
+                <input type="text" name='country' placeholder='Enter country' id='country' value={country} onChange={(e) => setCountry(e.target.value)} />
 
                 <label htmlFor="address">Address</label>
-                <input type="text" name='address' placeholder='enter address' id='address' value={address} onChange={(e) => setAddress(e.target.value)} />
+                <input type="text" name='address' placeholder='Enter address' id='address' value={address} onChange={(e) => setAddress(e.target.value)} />
 
                 <label htmlFor="rank">Enter Hotel Rank(/5): </label>
                 <input type="number" name="rank" id="rank" min={0} max={5} value={rank} onChange={(e) => setRank(e.target.valueAsNumber)} />
