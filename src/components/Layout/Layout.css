@@ -19,8 +19,9 @@
   justify-content: space-between;
   padding: 25px;
 }
+
 .layoutTop h2 {
-  font-size: 25px;
+  font-size: 30px;
   text-transform: uppercase;
   font-weight: 700;
   color: gold;
@@ -47,6 +48,37 @@
   margin: 10px auto 30px;
 }
 
+.btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.b-btn {
+  padding: 8px 10px;
+  background-color: gold;
+  border: none;
+  font-weight: 900;
+  border-radius: 5px;
+  cursor: pointer;
+  color: black;
+  margin: 0 3px;
+  transition: all 0.4s ease-in-out;
+}
+
+.b-del:hover {
+  background-color: red;
+  color: white;
+}
+.b-edit:hover {
+  background-color: green;
+  color: white;
+}
+.b-add:hover {
+  background-color: black;
+  color: white;
+}
+
 @media screen and (max-width: 750px) {
   .layout {
     margin-left: 0;
@@ -65,8 +97,26 @@
     height: 300px;
   }
 }
-@media screen and (max-width: 600px) {
+
+@media screen and (max-width: 950px) {
   .layoutTop {
-    padding: 25px 15px;
+    display: block;
+    padding: 15px;
+  }
+  .layoutTop h2 {
+    text-align: center;
+    margin: 5px auto;
+  }
+  .btns {
+    margin-top: 10px;
+  }
+  .b-btn{
+    margin: 5px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .layoutTop h2 {
+    font-size: 25px;
   }
 }
