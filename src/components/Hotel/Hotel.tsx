@@ -11,11 +11,10 @@ interface Props {
     item: Hotel;
     handleDelete: (id: number, chainID: number) => void;
     handleEdit: (id: number, name: string, city: string, address: string, country: string, rank: number, hotelID: number, chainID: number) => void;
-    startHandleEdit: (chain: number, hotel: number) => void;
 }
 
 const Hotels: React.FC<Props> = (props) => {
-    const { item, handleDelete, handleEdit, i, index, startHandleEdit } = props;
+    const { item, handleDelete, handleEdit, i, index } = props;
     const navigate = useNavigate();
 
     return (

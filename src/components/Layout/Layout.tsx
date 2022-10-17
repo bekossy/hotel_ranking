@@ -11,11 +11,10 @@ interface Props {
     handleDelete: (id: number, chainID: number) => void;
     handleEdit: (id: number, name: string, city: string, address: string, country: string, rank: number, hotelID: number, chainID: number) => void;
     setNewHotelChain: React.Dispatch<React.SetStateAction<string>>;
-    startHandleEdit: (chain: number, hotel: number) => void;
 }
 
 const Layout: React.FC<Props> = (props) => {
-    const { list, deleteChain, editChain, handleDelete, handleEdit, setNewHotelChain, startHandleEdit } = props;
+    const { list, deleteChain, editChain, handleDelete, handleEdit, setNewHotelChain } = props;
     const navigate = useNavigate();
     return (
         <><section className='layout'>
@@ -39,7 +38,7 @@ const Layout: React.FC<Props> = (props) => {
                             </div>
                             <div className="hotels">
                                 {layout.hotel.length ? layout.hotel.map((item, index) => {
-                                    return <Hotels key={item.id} item={item} handleDelete={handleDelete} handleEdit={handleEdit} i={i} index={index} startHandleEdit={startHandleEdit} />
+                                    return <Hotels key={item.id} item={item} handleDelete={handleDelete} handleEdit={handleEdit} i={i} index={index} />
                                 }) : <span>Add a hotel to chain</span>}
                             </div>
                         </div>

@@ -15,15 +15,14 @@ interface Props {
     handleDelete: (id: number, chainID: number) => void;
     handleEdit: (id: number, name: string, city: string, address: string, country: string, rank: number, hotelID: number, chainID: number) => void;
     setNewHotelChain: React.Dispatch<React.SetStateAction<string>>;
-    startHandleEdit: (chain: number, hotel: number) => void;
 }
 
 const HomePage: React.FC<Props> = (props) => {
-    const { addChain, setAddChain, handleChain, list, deleteChain, editChainFlag, editChain, handleDelete, handleEdit, setNewHotelChain, startHandleEdit } = props
+    const { addChain, setAddChain, handleChain, list, deleteChain, editChainFlag, editChain, handleDelete, handleEdit, setNewHotelChain } = props
     return (
         <section className='container'>
             <AddChain addChain={addChain} setAddChain={setAddChain} handleChain={handleChain} editChainFlag={editChainFlag} />
-            <Layout list={list} deleteChain={deleteChain} editChain={editChain} handleDelete={handleDelete} handleEdit={handleEdit} setNewHotelChain={setNewHotelChain} startHandleEdit={startHandleEdit} />
+            <Layout list={list} deleteChain={deleteChain} editChain={editChain} handleDelete={handleDelete} handleEdit={handleEdit} setNewHotelChain={setNewHotelChain} />
         </section>
     )
 }
