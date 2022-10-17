@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Chain, Hotel } from '../../Model';
+import { Chain } from '../../Model';
 import Hotels from '../Hotel/Hotel';
 import './Layout.css';
 
@@ -8,13 +8,13 @@ interface Props {
     list: Chain[];
     deleteChain: (id: number) => void;
     editChain: (id: number, text: string) => void;
-    hotel: Hotel[];
     handleDelete: (id: number) => void;
     handleEdit: (id: number, name: string, city: string, address: string, country: string, rank: number) => void;
+    setNewHotelChain: React.Dispatch<React.SetStateAction<string>>
 }
 
 const Layout: React.FC<Props> = (props) => {
-    const { list, deleteChain, editChain, hotel, handleDelete, handleEdit } = props;
+    const { list, deleteChain, editChain, handleDelete, handleEdit, setNewHotelChain } = props;
     const navigate = useNavigate();
     return (
         <><section className='layout'>
@@ -27,14 +27,17 @@ const Layout: React.FC<Props> = (props) => {
                                 <h2>{layout.chain}</h2>
 
                                 <div className="btns">
-                                    <button type='button' className='btn' onClick={() => editChain(layout.id, layout.chain)}>Edit {layout.chain}</button>
-                                    <button type='button' className='btn' onClick={() => deleteChain(layout.id)}>Delete {layout.chain}</button>
-                                    <button type='button' className='btn' onClick={() => navigate("/addHotel")}>Add Hotel</button>
+                                    <button type='button' className='b-btn b-edit' onClick={() => editChain(layout.id, layout.chain)}>Edit</button>
+                                    <button type='button' className='b-btn b-del' onClick={() => deleteChain(layout.id)}>Delete</button>
+                                    <button type='button' className='b-btn b-add' onClick={() => {
+                                        setNewHotelChain(layout.chain)
+                                        navigate("/addHotel")
+                                    }}>Add Hotel</button>
                                 </div>
 
                             </div>
                             <div className="hotels">
-                                {hotel.length ? hotel.map((item) => {
+                                {layout.hotel.length ? layout.hotel.map((item) => {
                                     return <Hotels key={item.id} item={item} handleDelete={handleDelete} handleEdit={handleEdit} />
                                 }) : <span>Add a hotel to chain</span>}
                             </div>
