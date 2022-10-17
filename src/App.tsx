@@ -5,6 +5,15 @@ import HomePage from './components/HomePage/HomePage';
 import AddHotel from './components/AddHotel/AddHotel';
 import { Chain, Hotel } from './Model';
 
+const localStorageHotel = () => {
+  const data = localStorage.getItem("hotel");
+  if (data) {
+    return JSON.parse(data)
+  }
+  else {
+    return []
+  }
+}
 
 const localStorageList = () => {
   const data = localStorage.getItem("list");
@@ -21,7 +30,7 @@ function App() {
   const [addChain, setAddChain] = useState<string>("");
   const [editChainFlag, setEditChainFlag] = useState<boolean>(false);
   const [editID, setEditID] = useState<number>(0);
-  const [hotel, setHotel] = useState<Hotel[]>([]);
+  const [hotel, setHotel] = useState<Hotel[]>(localStorageHotel());
   const [name, setName] = useState<string>("");
   const [city, setCity] = useState<string>("");
   const [country, setCountry] = useState<string>("");
@@ -31,6 +40,10 @@ function App() {
   const [modal, setModal] = useState(false);
   const [modalColor, setModalColor] = useState(false);
   const [modalText, setModalText] = useState("");
+  const [chainID, setChainID] = useState<number>(0);
+  const [hotelID, setHotelID] = useState<number>(0);
+
+  const [newHotelChain, setNewHotelChain] = useState<string>("")
 
   const handleChain = (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,8 +78,11 @@ function App() {
   }
 
   useEffect(() => {
-    localStorage.setItem("list", JSON.stringify(list))
+    localStorage.setItem("list", JSON.stringify(list));
   }, [list])
+  useEffect(() => {
+    localStorage.setItem("hotel", JSON.stringify(hotel))
+  }, [hotel])
 
   useEffect(() => {
     setTimeout(() => {
@@ -74,15 +90,29 @@ function App() {
     }, 4000);
   }, [modal]);
 
-  hotel.sort(function (a, b) {
-    return (b.rank - a.rank);
-  });
+  list.map((item) => {
+    return item.hotel.sort(function (a, b) {
+      return (b.rank - a.rank);
+    });
+  })
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (name && city && country && address && rank && !editFlag) {
-      const newHotel: Hotel = { id: Date.now(), name, city, country, address, rank }
+      const newHotel: Hotel = { id: Date.now(), name, rank, address, country, city }
       setHotel([...hotel, newHotel]);
+
+      let count = 0;
+
+      for (let i of list) {
+        if (i.chain === newHotelChain) {
+          break;
+        }
+        count++;
+      }
+
+      list[count].hotel.push(newHotel);
+
       setName("")
       setCity("")
       setCountry("")
@@ -92,6 +122,9 @@ function App() {
       setModal(true);
       setModalColor(true);
       setModalText("successfully added!");
+
+      localStorage.setItem("list", JSON.stringify(list));
+      localStorage.setItem("hotel", JSON.stringify(hotel));
     } else if (name && city && country && address && rank && editFlag) {
       setHotel(hotel.map((item) => {
         if (item.id === editID) {
@@ -116,12 +149,33 @@ function App() {
     }
   }
 
-  const handleDelete = (id: number) => {
-    const filtered = hotel.filter((item) => item.id !== id);
-    setHotel(filtered);
+  const handleDelete = (chainID: number, id: number) => {
+    let chain = list[chainID];
+    let newArr = []
+
+    for (let a in chain.hotel) {
+
+      let p: number = parseInt(a);
+      if (p !== id) {
+        newArr.push(chain.hotel[a])
+      }
+    }
+
+    console.log("New Array: ", newArr);
+
+    chain.hotel = newArr;
+    list[chainID] = chain;
+    localStorage.setItem("list", JSON.stringify(list));
+    setList(localStorageList());
+
   }
 
-  const handleEdit = (id: number, name: string, city: string, address: string, country: string, rank: number) => {
+  const startHandleEdit = (chain: number, hotel: number) => {
+  }
+
+  const handleEdit = (id: number, name: string, city: string, address: string, country: string, rank: number, chainID: number, hotelID: number) => {
+    setChainID(chainID);
+    setHotelID(hotelID);
     setEditFlag(true);
     setEditID(id);
     setName(name);
@@ -130,6 +184,7 @@ function App() {
     setAddress(address);
     setRank(rank);
   }
+  
 
   return (
     <>
@@ -145,9 +200,10 @@ function App() {
               deleteChain={deleteChain}
               editChain={editChain}
               editChainFlag={editChainFlag}
-              hotel={hotel}
               handleDelete={handleDelete}
               handleEdit={handleEdit}
+              setNewHotelChain={setNewHotelChain}
+              startHandleEdit={startHandleEdit}
             />
           } />
           <Route path='/addHotel' element={list.length ? <AddHotel
@@ -166,6 +222,8 @@ function App() {
             modal={modal}
             modalColor={modalColor}
             modalText={modalText}
+            setNewHotelChain={setNewHotelChain}
+
           /> : <Navigate to={"/"} />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
