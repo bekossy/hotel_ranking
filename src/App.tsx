@@ -126,12 +126,20 @@ function App() {
       localStorage.setItem("list", JSON.stringify(list));
       localStorage.setItem("hotel", JSON.stringify(hotel));
     } else if (name && city && country && address && rank && editFlag) {
-      setHotel(hotel.map((item) => {
-        if (item.id === editID) {
-          return { ...item, name, city, country, address, rank }
+      let chain = list[chainID];
+      let newArr = [{ name, city, country, address, rank }];
+
+      for (let a in chain.hotel) {
+        let p: number = parseInt(a);
+        if (p !== hotelID) {
+          newArr.push(chain.hotel[a]);
         }
-        return item;
-      }))
+      }
+      chain.hotel = newArr;
+      list[chainID] = chain;
+      localStorage.setItem("list", JSON.stringify(list));
+      setList(localStorageList());
+
       setName("")
       setCity("")
       setCountry("")
@@ -154,23 +162,17 @@ function App() {
     let newArr = []
 
     for (let a in chain.hotel) {
-
       let p: number = parseInt(a);
       if (p !== id) {
-        newArr.push(chain.hotel[a])
+        newArr.push(chain.hotel[a]);
       }
     }
-
-    console.log("New Array: ", newArr);
 
     chain.hotel = newArr;
     list[chainID] = chain;
     localStorage.setItem("list", JSON.stringify(list));
     setList(localStorageList());
 
-  }
-
-  const startHandleEdit = (chain: number, hotel: number) => {
   }
 
   const handleEdit = (id: number, name: string, city: string, address: string, country: string, rank: number, chainID: number, hotelID: number) => {
@@ -184,7 +186,7 @@ function App() {
     setAddress(address);
     setRank(rank);
   }
-  
+
 
   return (
     <>
@@ -203,7 +205,6 @@ function App() {
               handleDelete={handleDelete}
               handleEdit={handleEdit}
               setNewHotelChain={setNewHotelChain}
-              startHandleEdit={startHandleEdit}
             />
           } />
           <Route path='/addHotel' element={list.length ? <AddHotel
