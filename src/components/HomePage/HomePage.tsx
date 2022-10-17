@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '../Layout/Layout';
 import AddChain from '../AddChain/AddChain';
 import './HomePage.css';
-import { Chain, Hotel } from '../../Model';
+import { Chain } from '../../Model';
 
 interface Props {
     list: Chain[];
@@ -12,17 +12,18 @@ interface Props {
     deleteChain: (id: number) => void;
     editChainFlag: boolean;
     editChain: (id: number, text: string) => void;
-    handleDelete: (id: number) => void;
-    handleEdit: (id: number, name: string, city: string, address: string, country: string, rank: number) => void;
+    handleDelete: (id: number, chainID: number) => void;
+    handleEdit: (id: number, name: string, city: string, address: string, country: string, rank: number, hotelID: number, chainID: number) => void;
     setNewHotelChain: React.Dispatch<React.SetStateAction<string>>;
+    startHandleEdit: (chain: number, hotel: number) => void;
 }
 
 const HomePage: React.FC<Props> = (props) => {
-    const { addChain, setAddChain, handleChain, list, deleteChain, editChainFlag, editChain, handleDelete, handleEdit, setNewHotelChain } = props
+    const { addChain, setAddChain, handleChain, list, deleteChain, editChainFlag, editChain, handleDelete, handleEdit, setNewHotelChain, startHandleEdit } = props
     return (
         <section className='container'>
             <AddChain addChain={addChain} setAddChain={setAddChain} handleChain={handleChain} editChainFlag={editChainFlag} />
-            <Layout list={list} deleteChain={deleteChain} editChain={editChain} handleDelete={handleDelete} handleEdit={handleEdit} setNewHotelChain={setNewHotelChain} />
+            <Layout list={list} deleteChain={deleteChain} editChain={editChain} handleDelete={handleDelete} handleEdit={handleEdit} setNewHotelChain={setNewHotelChain} startHandleEdit={startHandleEdit} />
         </section>
     )
 }
