@@ -12,17 +12,17 @@ interface Props {
     deleteChain: (id: number) => void;
     editChainFlag: boolean;
     editChain: (id: number, text: string) => void;
-    hotel: Hotel[];
     handleDelete: (id: number) => void;
     handleEdit: (id: number, name: string, city: string, address: string, country: string, rank: number) => void;
+    setNewHotelChain: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const HomePage: React.FC<Props> = (props) => {
-    const { addChain, setAddChain, handleChain, list, deleteChain, editChainFlag, editChain, hotel, handleDelete, handleEdit } = props
+    const { addChain, setAddChain, handleChain, list, deleteChain, editChainFlag, editChain, handleDelete, handleEdit, setNewHotelChain } = props
     return (
         <section className='container'>
             <AddChain addChain={addChain} setAddChain={setAddChain} handleChain={handleChain} editChainFlag={editChainFlag} />
-            <Layout list={list} deleteChain={deleteChain} editChain={editChain} hotel={hotel} handleDelete={handleDelete} handleEdit={handleEdit} />
+            <Layout list={list} deleteChain={deleteChain} editChain={editChain} handleDelete={handleDelete} handleEdit={handleEdit} setNewHotelChain={setNewHotelChain} />
         </section>
     )
 }
