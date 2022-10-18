@@ -38,8 +38,8 @@ function App() {
   const [rank, setRank] = useState<number>(0);
   const [editFlag, setEditFlag] = useState<boolean>(false);
   const [modal, setModal] = useState(false);
-  const [modalColor, setModalColor] = useState(false);
-  const [modalText, setModalText] = useState("");
+  const [modalColor, setModalColor] = useState<boolean>(false);
+  const [modalText, setModalText] = useState<string>("");
   const [chainID, setChainID] = useState<number>(0);
   const [hotelID, setHotelID] = useState<number>(0);
 
